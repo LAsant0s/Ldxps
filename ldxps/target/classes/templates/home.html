@@ -24,11 +24,38 @@
 					    		<a th:href="@{/atualizar-vendedor(cdVend=${vendedor.cdVend})}" class="edit">
 									<i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
 								</a>
+								<a th:href="@{/home(cdVend=${vendedor.cdVend})}" class="edit">
+									<button type="button" class="btn btn-sm btn-outline-dark ">Clientes</button>
+								</a>
 					    	</td>
 					    </tr>
 					  </tbody>
 					</table>
-							
+				</div>
+				<div class="col-6">
+					<h2>Clientes</h2>
+					<table class="table table-hover mx-auto">
+					  <thead class="thead-dark">
+					    <tr>
+					      <th scope="col">Nome</th>
+					      <th scope="col">Tipo Pessoa</th>
+					      <th scope="col">Limite de crédito</th>
+					      <th scope="col">Operações</th>
+					    </tr>
+					  </thead>
+					 <tbody>
+					    <tr th:each="cliente : ${listaCliente}">
+					    	<td th:text="${cliente.dsNome}">aaaa</td>
+					    	<td th:text="${cliente.idTipo}">aaaa</td>
+					    	<td th:text="${cliente.dsLim}">aaaa</td>
+					    	<td>
+					    		<a th:href="@{/atualizar-vendedor(cdVend=${vendedor.cdVend})}" class="edit">
+									<i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+								</a>
+					    	</td>
+					    </tr>
+					  </tbody> 
+					</table>
 				</div>
 			</div>
 			

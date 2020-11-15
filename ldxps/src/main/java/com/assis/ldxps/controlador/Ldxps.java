@@ -16,11 +16,19 @@ import com.assis.ldxps.dominio.Vendedor;
 public class Ldxps {
  
 	@RequestMapping("/home")
-	public String cadastrar(Model modelo) {
-		VendedorDAO dao = new VendedorDAO();
-		List<Vendedor> lista = dao.listagem();
+	public String cadastrar(@RequestParam(value="cdVend", required = false)String cdVend, Model modelo) {
+		List<Cliente> listaCliente = null; 
+		VendedorDAO vDao = new VendedorDAO();
+		ClienteDAO cDao = new ClienteDAO(); 
+		List<Vendedor> lista = vDao.listagem();
 		modelo.addAttribute("lista", lista);
 		modelo.addAttribute("vendedor", new Vendedor());
+		if(cdVend != null) {
+			listaCliente = cDao.listagem(cdVend); 
+			System.out.println("Entrou");
+		}
+		modelo.addAttribute("listaCliente", listaCliente);
+		modelo.addAttribute("cliente", new Cliente());
 		return "home";
 	}
 	
@@ -72,5 +80,4 @@ public class Ldxps {
 		dao.inserir(cliente);
 		return "mensagem";
 	}
-	
 }

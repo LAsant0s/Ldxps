@@ -14,6 +14,15 @@ public class Cliente {
 		this.dsLim = dsLim;
 	}
 	
+	public Cliente(String cdCl, String dsNome, String cdVend, String idTipo, double dsLim) {
+		this.cdCl = cdCl;
+		this.dsNome = dsNome;
+		this.cdVend = cdVend;
+		this.idTipo = idTipo;
+		this.dsLim = dsLim;
+	}
+
+	
 	public Cliente() {
 		
 	}
