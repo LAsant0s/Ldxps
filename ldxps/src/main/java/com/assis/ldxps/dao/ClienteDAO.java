@@ -53,4 +53,24 @@ public class ClienteDAO {
 		return lista;
 	}
 	
+	public List<Cliente> listagemTodos() {
+		List<Cliente> lista = new ArrayList<>();
+		Connection conexao = FabricaDeConexao.getConnection();
+		String sql = "select * from clientes";
+		try {
+			PreparedStatement stmt = conexao.prepareStatement(sql);
+			ResultSet resultado = stmt.executeQuery(); // recebe resultado da query
+			while(resultado.next()) {
+				Cliente c = new Cliente(resultado.getString("cdCl"), 
+										resultado.getString("dsNome"),
+										resultado.getString("cdVend"), 
+										resultado.getString("idTipo"), resultado.getDouble("dsLim"));
+				lista.add(c); 
+			}
+		} catch (Exception err) {
+			System.out.println("Erro na obtenção da lista de vendedores: " + err.getMessage());
+		}
+		return lista;
+	}
+	
 }

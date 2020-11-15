@@ -24,11 +24,15 @@ public class Ldxps {
 		modelo.addAttribute("lista", lista);
 		modelo.addAttribute("vendedor", new Vendedor());
 		if(cdVend != null) {
-			listaCliente = cDao.listagem(cdVend); 
-			System.out.println("Entrou");
+			if(cdVend.length() > 1) {				
+				listaCliente = cDao.listagem(cdVend); 
+			} else {
+				listaCliente = cDao.listagemTodos(); 
+			}
 		}
 		modelo.addAttribute("listaCliente", listaCliente);
 		modelo.addAttribute("cliente", new Cliente());
+		modelo.addAttribute("cdVendSelecionado", cdVend);
 		return "home";
 	}
 	

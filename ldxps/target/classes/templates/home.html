@@ -16,7 +16,7 @@
 					    </tr>
 					  </thead>
 					  <tbody>
-					    <tr th:each="vendedor : ${lista}">
+					    <tr th:each="vendedor : ${lista}" th:classappend="${vendedor.cdVend == cdVendSelecionado}  ? 'bg-selecionado': ''">
 					    	<td th:text="${vendedor.dsNome}">aaaa</td>
 					    	<td th:text="${vendedor.cdTab}">aaaa</td>
 					    	<td th:text="${vendedor.dtNasc}">aaaa</td>
@@ -24,7 +24,7 @@
 					    		<a th:href="@{/atualizar-vendedor(cdVend=${vendedor.cdVend})}" class="edit">
 									<i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
 								</a>
-								<a th:href="@{/home(cdVend=${vendedor.cdVend})}" class="edit">
+								<a th:href="@{/home(cdVend=${vendedor.cdVend})}">
 									<button type="button" class="btn btn-sm btn-outline-dark ">Clientes</button>
 								</a>
 					    	</td>
@@ -49,7 +49,7 @@
 					    	<td th:text="${cliente.idTipo}">aaaa</td>
 					    	<td th:text="${cliente.dsLim}">aaaa</td>
 					    	<td>
-					    		<a th:href="@{/atualizar-vendedor(cdVend=${vendedor.cdVend})}" class="edit">
+					    		<a th:href="@{/atualizar-cliente(cdCl=${cliente.cdCl})}" class="edit">
 									<i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
 								</a>
 					    	</td>
@@ -58,7 +58,9 @@
 					</table>
 				</div>
 			</div>
-			
+			<a th:href="@{/home(cdVend=1)}">
+				<button type="button" class="btn btn-sm btn-outline-dark mb-2">Clientes cadastrados</button>
+			</a>
 		</div>
 		
 	</div>
