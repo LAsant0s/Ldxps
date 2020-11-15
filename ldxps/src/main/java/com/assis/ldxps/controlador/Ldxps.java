@@ -7,7 +7,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.assis.ldxps.dao.ClienteDAO;
 import com.assis.ldxps.dao.VendedorDAO;
+import com.assis.ldxps.dominio.Cliente;
 import com.assis.ldxps.dominio.Vendedor;
 
 @Controller
@@ -54,6 +56,21 @@ public class Ldxps {
 		VendedorDAO dao = new VendedorDAO();
 		dao.excluir(cdVend);
 		return "mensagem"; 
+	}
+	
+	@RequestMapping("/cadastro-cliente")
+	public String cadastroCliente(Cliente cliente, @RequestParam(value="cdVend")String cdVend, Model modelo) {	
+		cliente = new Cliente(); 
+		cliente.setCdVend(cdVend);
+		modelo.addAttribute("cdVendedor", cdVend); 
+		return "cadastro-cliente"; 
+	}
+	
+	@RequestMapping("/salvar-cliente") 
+	public String salvarCliente(Cliente cliente) {
+		ClienteDAO dao = new ClienteDAO(); 
+		dao.inserir(cliente);
+		return "mensagem";
 	}
 	
 }
