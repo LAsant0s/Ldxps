@@ -1,0 +1,11 @@
+package com.assis.ldxps.dao;
+
+import com.assis.ldxps.dominio.Vendedor;
+
+public class VendedorDAO {
+	
+	public void inserir(Vendedor v) {
+		Connection conexao = FabricaDeConexao.getConnectio();
+	}
+	
+}

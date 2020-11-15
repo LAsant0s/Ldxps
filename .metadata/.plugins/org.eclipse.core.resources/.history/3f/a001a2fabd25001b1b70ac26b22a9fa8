@@ -1,0 +1,18 @@
+package com.assis.ldxps.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import com.assis.ldxps.config.FabricaDeConexao;
+import com.assis.ldxps.dominio.Vendedor;
+
+public class VendedorDAO {
+	
+	public void inserir(Vendedor v) {
+		Connection conexao = FabricaDeConexao.getConnection();
+		PreparedStatement stmt; 
+		String sql = "insert into vendedores" + "(cdVend, dsNome, cdTable, dtNasc)"
+				+ " values (uuid(), ?, ?, ?)"; 
+	}
+	
+}

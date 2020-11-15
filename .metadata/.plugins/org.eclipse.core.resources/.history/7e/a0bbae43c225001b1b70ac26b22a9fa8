@@ -1,0 +1,40 @@
+package com.assis.ldxps.dao;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import com.assis.ldxps.config.FabricaDeConexao;
+import com.assis.ldxps.dominio.Vendedor;
+
+public class VendedorDAO {
+	
+	public void inserir(Vendedor v) {
+		Connection conexao = FabricaDeConexao.getConnection();
+		PreparedStatement stmt; 
+		String sql = "insert into vendedores" + "(cdVend, dsNome, cdTab, dtNasc)"
+				+ " values (uuid(), ?, ?, ?)"; 
+		try {
+			stmt = conexao.prepareStatement(sql); 
+			
+			stmt.setString(1, v.getDsNome());
+			stmt.setInt(2, v.getCdTab());
+			stmt.setDate(3, v.getDtNasc());
+			
+			stmt.execute();
+			stmt.close();
+			conexao.close();
+		} catch(Exception err) {
+			System.out.println("Erro ao inserir vendedor: " + err.getMessage());
+		}
+	}
+	
+	public static void main(String[] args) throws ParseException {
+		DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+		Vendedor v1 = new Vendedor("Henrique Moreira", 20, (Date) sdf.parse("2001-11-20"));
+	}
+	
+}

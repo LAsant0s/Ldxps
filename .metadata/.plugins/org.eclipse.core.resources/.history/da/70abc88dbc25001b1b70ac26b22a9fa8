@@ -1,0 +1,5 @@
+package com.assis.ldxps.dao;
+
+public class VendedorDAO {
+
+}

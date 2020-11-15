@@ -3,7 +3,6 @@ package com.assis.ldxps.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +52,7 @@ public class VendedorDAO {
 	public Vendedor buscarPorCdVend(String cdVend) {
 		Vendedor v = null;
 		Connection conexao = FabricaDeConexao.getConnection();
-		String sql = "select * from conta where cdVend =?";
+		String sql = "select * from vendedores where cdVend = ?";
 		try {
 			PreparedStatement stmt = conexao.prepareStatement(sql);
 			stmt.setString(1, cdVend);
@@ -69,5 +68,41 @@ public class VendedorDAO {
 			System.out.println(e.getMessage());
 		}
 		return v;
+	}
+	
+	public void atualizar(Vendedor v) {
+		Connection conexao = FabricaDeConexao.getConnection();
+		PreparedStatement stmt;
+		String sql = "update vendedores set dsNome=?,cdTab=?,dtNasc=?"
+				+ " where cdVend = ?";
+		try {
+			stmt = conexao.prepareStatement(sql);
+			stmt.setString(1, v.getDsNome());
+			stmt.setInt(2, v.getCdTab());
+			stmt.setDate(3, v.getDtNasc());
+			stmt.setString(4, v.getCdVend());
+		
+			stmt.execute();
+			stmt.close();
+			conexao.close();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public void excluir(String cdVend) {
+		Connection conexao = FabricaDeConexao.getConnection();
+		PreparedStatement stmt;
+		String sql = "delete from vendedores where cdVend = ?";
+		try {
+			stmt = conexao.prepareStatement(sql);
+			stmt.setString(1, cdVend);
+			
+			stmt.execute();
+			stmt.close();
+			conexao.close();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }

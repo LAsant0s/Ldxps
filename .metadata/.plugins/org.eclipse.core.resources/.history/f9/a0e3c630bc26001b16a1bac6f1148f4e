@@ -1,0 +1,6 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:include="fragments/layout :: layout">
+	<div th:fragment="conteudo">
+		<h1>Olá</h1>
+	</div>
+</html>

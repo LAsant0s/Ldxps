@@ -1,0 +1,93 @@
+package com.assis.ldxps.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.assis.ldxps.config.FabricaDeConexao;
+import com.assis.ldxps.dominio.Vendedor;
+
+public class VendedorDAO {
+
+	public void inserir(Vendedor v) {
+		Connection conexao = FabricaDeConexao.getConnection();
+		PreparedStatement stmt;
+		String sql = "insert into vendedores" + "(cdVend, dsNome, cdTab, dtNasc)" + " values (uuid(), ?, ?, ?)";
+		try {
+			stmt = conexao.prepareStatement(sql);
+
+			stmt.setString(1, v.getDsNome());
+			stmt.setInt(2, v.getCdTab());
+			stmt.setDate(3, v.getDtNasc());
+
+			stmt.execute();
+			stmt.close();
+			conexao.close();
+		} catch (Exception err) {
+			System.out.println("Erro ao inserir vendedor: " + err.getMessage());
+		}
+	}
+
+	public List<Vendedor> listagem() {
+		List<Vendedor> lista = new ArrayList<>();
+		Connection conexao = FabricaDeConexao.getConnection();
+		String sql = "select * from vendedores";
+		try {
+			PreparedStatement stmt = conexao.prepareStatement(sql);
+			ResultSet resultado = stmt.executeQuery(); // recebe resultado da query
+			while(resultado.next()) {
+				Vendedor v = new Vendedor(resultado.getString("cdVend"), 
+										resultado.getString("dsNome"),
+										resultado.getInt("cdTab"), resultado.getDate("dtNasc"));
+				lista.add(v); 
+			}
+		} catch (Exception err) {
+			System.out.println("Erro na obtenção da lista de vendedores: " + err.getMessage());
+		}
+		return lista;
+	}
+
+	public Vendedor buscarPorCdVend(String cdVend) {
+		Vendedor v = null;
+		Connection conexao = FabricaDeConexao.getConnection();
+		String sql = "select * from vendedores where cdVend = ?";
+		try {
+			PreparedStatement stmt = conexao.prepareStatement(sql);
+			stmt.setString(1, cdVend);
+			ResultSet resultado = stmt.executeQuery();
+			resultado.next();
+			v = new Vendedor(resultado.getString("cdVend"), 
+							resultado.getString("dsNome"),
+							resultado.getInt("cdTab"), resultado.getDate("dtNasc"));
+			resultado.close();
+			stmt.close();
+			conexao.close();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return v;
+	}
+	
+	public void atualizar(Vendedor v) {
+		Connection conexao = FabricaDeConexao.getConnection();
+		PreparedStatement stmt;
+		String sql = "update vendendor set dsNome=?,cdTab=?,dtNasc=?"
+				+ " where cdVend = ?";
+		try {
+			stmt = conexao.prepareStatement(sql);
+			stmt.setString(1, v.getDsNome());
+			stmt.setInt(2, v.getCdTab());
+			stmt.setDate(3, v.getDtNasc());
+			stmt.setString(4, v.getCdVend());
+		
+			stmt.execute();
+			stmt.close();
+			conexao.close();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:include="fragments/layout :: layout">
+	<div th:fragment="conteudo">
+		<form>
+		  <div class="form-row">
+		    <div class="form-group col-md-6">
+		      <label for="name">Nome</label>
+		      <input type="text" class="form-control" id="name" placeholder="Nome completo">
+		    </div>
+		    <div class="form-group col-md-6">
+		      <label for="codigoPreco">Código da tabela preço</label>
+		      <input type="text" class="form-control" id="codigoPreco">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="inputAddress">Data de nascimento</label>
+		    <input type="date" class="form-control" id="inputAddress" placeholder="1234 Main St">
+		  </div>
+		  <button type="submit" class="btn btn-primary">Cadastrar</button>
+		</form>
+	</div>
+</html>

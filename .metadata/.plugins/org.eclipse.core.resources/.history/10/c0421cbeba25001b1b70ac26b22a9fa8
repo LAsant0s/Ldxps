@@ -1,0 +1,12 @@
+package com.assis.ldxps.dominio;
+
+import java.sql.Date;
+
+public class Vendedor {
+	private int cdVend;
+	private String dsNome; 
+	private int cdTab;
+	private Date dtNasc; 
+	
+	
+}

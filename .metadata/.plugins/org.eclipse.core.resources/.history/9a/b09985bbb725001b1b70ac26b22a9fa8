@@ -1,0 +1,5 @@
+package com.assis.ldxps.config;
+
+public class FabricaDeConexao {
+
+}
