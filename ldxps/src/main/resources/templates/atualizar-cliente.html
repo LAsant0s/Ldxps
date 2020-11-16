@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:include="fragments/layout :: layout">
+ 	<meta charset="UTF-8"/>
 	<div th:fragment="conteudo">
-	<h1 class="mt-3 mb-4">Gerenciar dados do vendedor</h1>
+		<h1 class="mt-3 mb-4">Gerenciar dados do cliente</h1>
 		<div class="container">
-			<div class="row"> 
+			<div class="row">
 				<div class="col-9 m-auto">
-					<form action="/salvar-alteracoes" method="post" th:object="${vendedor}">
-					<input type="hidden" name="id" th:field="*{cdVend}" th:value="${cdVend}">
+					<form action="/salvar-alteracoes-cliente" method="post" th:object="${cliente}">
+					<input type="hidden" name="id" th:field="*{cdCl}" th:value="${cdCl}">
 					  <div class="form-row">
 					    <div class="form-group col-md-6">
 					      <label for="name">Nome</label>
-					      <input type="text" class="form-control" id="name" placeholder="Nome completo" required th:value="${dsNome}" th:field="*{dsNome}">
+					      <input type="text" class="form-control" id="name" placeholder="Nome completo" th:value="${dsNome}" th:field="*{dsNome}" required>
 					    </div>
 					    <div class="form-group col-md-6">
-					      <label for="codigoPreco">Código da tabela preço</label>
-					      <input type="text" class="form-control" id="codigoPreco" required th:field="*{cdTab}">
+					       <label for="exampleFormControlSelect1">Tipo de Pessoa</label>
+						    <select class="form-control" id="exampleFormControlSelect1" th:value="${idTipo}" th:field="*{idTipo}" required>
+						      <option value=""></option>
+						      <option value="PF">PF</option>
+						      <option value="PJ">PJ</option>
+						    </select>
 					    </div>
 					  </div>
 					  <div class="form-group">
-					    <label for="inputAddress">Data de nascimento</label>
-					    <input type="date" class="form-control" id="inputAddress" required th:field="*{dtNasc}">
+					    <label>Limite de crÃ©dito</label>
+					    <input type="number" class="form-control" th:value=${dsLim} th:field="*{dsLim}" step="0.01" required>
 					  </div>
 					  <button type="submit" class="btn btn-primary">Confirmar</button>
 					</form>
-					<div class="mt-3">
-						<a  th:href="@{/excluir-vendedor(cdVend=${vendedor.cdVend})}">
-					  		<button class="btn btn-danger">Excluir</button>
-					 	 </a>
-					  	<a  th:href="@{/cadastro-cliente(cdVend=${vendedor.cdVend})}">
-					  		<button class="btn btn-primary">Criar Cliente</button>
-					 	 </a>
-					</div>
+					<a  th:href="@{/excluir-cliente(cdCl=${cliente.cdCl})}">
+					  	<button class="btn btn-danger mt-2">Excluir</button>
+					</a>
 				</div>
 			</div>
 		</div>

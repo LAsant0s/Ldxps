@@ -21,6 +21,12 @@ public class Cliente {
 		this.idTipo = idTipo;
 		this.dsLim = dsLim;
 	}
+	public Cliente(String cdCl, double dsLim, String dsNome, String idTipo) {
+		this.cdCl = cdCl;
+		this.dsNome = dsNome;
+		this.idTipo = idTipo;
+		this.dsLim = dsLim;
+	}
 
 	
 	public Cliente() {
@@ -52,6 +58,7 @@ public class Cliente {
 	}
 	
 	public String getCdCl() {
+		System.out.println("Imprimindo: " + cdCl);
 		return cdCl;
 	}
 	

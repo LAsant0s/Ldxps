@@ -84,4 +84,27 @@ public class Ldxps {
 		dao.inserir(cliente);
 		return "mensagem";
 	}
+	
+	@RequestMapping("/atualizar-cliente")
+	public String atualizarCliente(Cliente cliente, @RequestParam(value="cdCl", required = false)String cdCl, Model modelo) {
+		ClienteDAO dao = new ClienteDAO(); 
+		cliente = dao.buscarPorCdCl(cdCl); 
+		modelo.addAttribute("cliente", cliente); 
+		return "atualizar-cliente";
+	}
+	
+	@RequestMapping("/salvar-alteracoes-cliente")
+	public String atualizarCliente2(Cliente cliente) {
+		System.out.println(cliente.getCdCl());
+		ClienteDAO dao = new ClienteDAO();
+		dao.atualizar(cliente);
+		return "mensagem";
+	}
+	
+	@RequestMapping("/excluir-cliente")
+	public String excluirCliente(@RequestParam(value="cdCl", required = false)String cdCl) {
+		ClienteDAO dao = new ClienteDAO();
+		dao.excluir(cdCl);
+		return "mensagem"; 
+	}
 }
