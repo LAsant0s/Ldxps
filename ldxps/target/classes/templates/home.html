@@ -6,7 +6,12 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-6">
-					<h2>Vendedor</h2>
+					<div class="cabecalho-tabela">
+						<h2>Vendedor</h2>
+						<a th:href="@{/criar-v}">
+							<button type="button" class="btn btn-sm btn-outline-dark mb-2">Cadastrar Vendedor</button>
+						</a>
+					</div>
 					<table class="table table-hover mx-auto">
 					  <thead class="thead-dark">
 					    <tr>
@@ -34,7 +39,7 @@
 					</table>
 				</div>
 				<div class="col-6">
-					<div class="titulo-cliente">
+					<div class="cabecalho-tabela">
 						<h2>Clientes</h2>
 						<a th:href="@{/home(cdVend=1)}">
 							<button type="button" class="btn btn-sm btn-outline-dark mb-2">Listar todos os clientes cadastrados</button>

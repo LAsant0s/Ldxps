@@ -58,7 +58,6 @@ public class Cliente {
 	}
 	
 	public String getCdCl() {
-		System.out.println("Imprimindo: " + cdCl);
 		return cdCl;
 	}
 	

@@ -95,7 +95,6 @@ public class Ldxps {
 	
 	@RequestMapping("/salvar-alteracoes-cliente")
 	public String atualizarCliente2(Cliente cliente) {
-		System.out.println(cliente.getCdCl());
 		ClienteDAO dao = new ClienteDAO();
 		dao.atualizar(cliente);
 		return "mensagem";

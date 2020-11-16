@@ -29,11 +29,7 @@ table.table td a.edit {
 	color: #fa9a0c;
 }
 
-table.table td a.delete {
-	color: #F44336;
-}
-
-.titulo-cliente {
+.cabecalho-tabela {
 	display: flex;
 	justify-content: space-between;
 }
