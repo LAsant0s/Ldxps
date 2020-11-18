@@ -7,7 +7,7 @@
 			<div class="row"> 
 				<div class="col-9 m-auto">
 					<form action="/salvar-alteracoes" method="post" th:object="${vendedor}">
-					<input type="hidden" name="id" th:field="*{cdVend}" th:value="${cdVend}">
+					<input type="hidden" id="cdVend" th:field="*{cdVend}" th:value="${cdVend}">
 					  <div class="form-row">
 					    <div class="form-group col-md-6">
 					      <label for="name">Nome</label>

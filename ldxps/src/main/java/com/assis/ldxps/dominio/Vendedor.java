@@ -30,6 +30,10 @@ public class Vendedor {
 		return cdVend;
 	}
 	
+	public void setCdVend(String cdVend) {	
+		this.cdVend = cdVend; 
+	}
+	
 	public String getDsNome() {
 		return dsNome;
 	}

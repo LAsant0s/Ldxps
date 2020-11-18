@@ -74,7 +74,7 @@ public class VendedorDAO {
 		Connection conexao = FabricaDeConexao.getConnection();
 		PreparedStatement stmt;
 		String sql = "update vendedores set dsNome=?,cdTab=?,dtNasc=?"
-				+ " where cdVend = ?";
+				+ " where cdVend = ?"; 	
 		try {
 			stmt = conexao.prepareStatement(sql);
 			stmt.setString(1, v.getDsNome());
@@ -82,6 +82,7 @@ public class VendedorDAO {
 			stmt.setDate(3, v.getDtNasc());
 			stmt.setString(4, v.getCdVend());
 		
+			System.out.println(stmt);
 			stmt.execute();
 			stmt.close();
 			conexao.close();

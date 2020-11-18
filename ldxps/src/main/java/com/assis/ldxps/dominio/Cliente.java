@@ -61,6 +61,10 @@ public class Cliente {
 		return cdCl;
 	}
 	
+	public void setCdCl(String cdCl) {
+		this.cdCl = cdCl;
+	}
+	
 	public String getCdVend() {
 		return cdVend;
 	} 

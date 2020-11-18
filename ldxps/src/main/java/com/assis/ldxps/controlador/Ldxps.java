@@ -49,7 +49,7 @@ public class Ldxps {
 	}
 	
 	@RequestMapping("/atualizar-vendedor")
-	public String atualizar(Vendedor v ,@RequestParam(value="cdVend", required = false)String cdVend, Model modelo) {
+	public String atualizar(Vendedor v, @RequestParam(value="cdVend", required = false)String cdVend, Model modelo) {
 		VendedorDAO dao = new VendedorDAO(); 
 		Vendedor vendedor = dao.buscarPorCdVend(cdVend); 
 		modelo.addAttribute("vendedor", vendedor); 
@@ -58,6 +58,7 @@ public class Ldxps {
 	
 	@RequestMapping("/salvar-alteracoes")
 	public String atualizar2(Vendedor vendedor) {
+		System.out.println("--------------> " + vendedor.getCdVend());
 		VendedorDAO dao = new VendedorDAO();
 		dao.atualizar(vendedor);
 		return "mensagem";
